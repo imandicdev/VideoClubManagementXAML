@@ -1,0 +1,10 @@
+D:\Freelas\Codementor\RitaKucera\VideoClubManagementFinal\VideoClubManagement.Database\bin\Debug\VideoClubManagement.Database.dll.config
+D:\Freelas\Codementor\RitaKucera\VideoClubManagementFinal\VideoClubManagement.Database\bin\Debug\VideoClubManagement.Database.dll
+D:\Freelas\Codementor\RitaKucera\VideoClubManagementFinal\VideoClubManagement.Database\bin\Debug\VideoClubManagement.Database.pdb
+D:\Freelas\Codementor\RitaKucera\VideoClubManagementFinal\VideoClubManagement.Database\bin\Debug\EntityFramework.dll
+D:\Freelas\Codementor\RitaKucera\VideoClubManagementFinal\VideoClubManagement.Database\bin\Debug\EntityFramework.SqlServer.dll
+D:\Freelas\Codementor\RitaKucera\VideoClubManagementFinal\VideoClubManagement.Database\bin\Debug\EntityFramework.xml
+D:\Freelas\Codementor\RitaKucera\VideoClubManagementFinal\VideoClubManagement.Database\bin\Debug\EntityFramework.SqlServer.xml
+D:\Freelas\Codementor\RitaKucera\VideoClubManagementFinal\VideoClubManagement.Database\obj\Debug\VideoClubManagement.Database.csprojResolveAssemblyReference.cache
+D:\Freelas\Codementor\RitaKucera\VideoClubManagementFinal\VideoClubManagement.Database\obj\Debug\VideoClubManagement.Database.dll
+D:\Freelas\Codementor\RitaKucera\VideoClubManagementFinal\VideoClubManagement.Database\obj\Debug\VideoClubManagement.Database.pdb

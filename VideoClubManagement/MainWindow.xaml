@@ -1,0 +1,100 @@
+﻿<Window x:Class="VideoClubManagement.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VideoClubManagement"
+        xmlns:converters="clr-namespace:VideoClubManagement.Useful"
+        mc:Ignorable="d"
+        DataContext="{Binding MainWindowViewModel, Source={StaticResource Locator}}"
+        Title="Video Club Management" Height="600" Width="800">
+    
+    <Grid Margin="7">
+        <Grid Visibility="{Binding IsAddingNewRental, Converter={converters:InverseBooleanToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <TextBlock Grid.Row="0" Text="Video Club Management" FontSize="18"/>
+            <StackPanel Grid.Row="1" Margin="0,7">
+                <TextBlock Text="Filters"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Margin="0,3,0,0">
+                        <TextBlock Text="Member:"/>
+                        <ComboBox ItemsSource="{Binding Members}" SelectedItem="{Binding SelectedMember}" DisplayMemberPath="FullName"></ComboBox>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Margin="20,3,20,0">
+                        <TextBlock Text="Rented at:"/>
+                        <DatePicker SelectedDate="{Binding SelectedRentedDate}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2" Margin="0,3,0,0">
+                        <TextBlock Text="Returned at:"/>
+                        <DatePicker SelectedDate="{Binding SelectedReturnedDate}"/>
+                    </StackPanel>
+
+                </Grid>
+                <StackPanel Orientation="Horizontal" Margin="0,3">
+                    <Button Padding="7,3" Command="{Binding ApplyFilterCommand}" Margin="0,0,7,0">Apply / Refresh</Button>
+                    <Button Padding="7,3" Command="{Binding ClearFilterCommand}">Clear Filter</Button>
+                </StackPanel>
+            </StackPanel>
+            <DataGrid Grid.Row="2" 
+                      ItemsSource="{Binding RentedMovies}"
+                      CanUserReorderColumns="False"
+                      CanUserDeleteRows="False"
+                      CanUserResizeRows="False"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Rented at" Binding="{Binding Rented, StringFormat={}{0:MM/dd/yyyy}}" />
+                    <DataGridTextColumn Header="Returned at" Binding="{Binding Returned, StringFormat={}{0:MM/dd/yyyy}}" />
+                    <DataGridTextColumn Header="Movie" Binding="{Binding Movie.Name}"/>
+                    <DataGridTextColumn Header="Member" Binding="{Binding Member.FullName}"/>
+                    <DataGridTextColumn Header="Cellphone" Binding="{Binding Member.Cellphone}"/>
+                    <DataGridTextColumn Header="Email" Binding="{Binding Member.Email}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Grid.Row="3" Margin="0,7,0,0" Command="{Binding NewRentalCommand}" Padding="10" FontSize="16">New rental</Button>
+        </Grid>
+        <Grid Visibility="{Binding IsAddingNewRental, Converter={converters:BooleanToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="New rental" FontSize="18"/>
+            <StackPanel Grid.Row="1" Margin="0,7">
+                <TextBlock Text="Select the member:"/>
+                <ComboBox ItemsSource="{Binding Members}" SelectedItem="{Binding NewRental.Member}" DisplayMemberPath="FullName"></ComboBox>
+            </StackPanel>
+            <ScrollViewer Grid.Row="2" Margin="0,7">
+                <ItemsControl ItemsSource="{Binding NewRental.Movies}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <WrapPanel>
+                                <CheckBox Focusable="False" IsChecked="{Binding Selected}" VerticalAlignment="Center" Margin="0,3">
+                                    <ContentPresenter Content="{Binding Movie.Name}"  Margin="2,0" />
+                                </CheckBox>
+                            </WrapPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+            <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,3">
+                <Button Padding="7,3" Command="{Binding SaveNewRentalCommand}" Margin="0,0,7,0">Save</Button>
+                <Button Padding="7,3" Command="{Binding CancelNewRentalCommand}">Cancel</Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
